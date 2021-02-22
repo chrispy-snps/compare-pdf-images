@@ -54,6 +54,8 @@ If the files differ, the script reports:
 
 `Of 47 pages, PDF images differ at: 4-5, 17, 29-47.`
 
+The script returns `0` for identicality and `1` for difference.
+
 If the files have different page counts, both page counts are reported, and the additional pages are always reported as different:
 
 `Of (47 and 51) pages, PDF images differ at: 4-5, 17, 29-51.`

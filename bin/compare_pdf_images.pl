@@ -47,6 +47,7 @@ die "Found fewer difference flags than pages ($tiffcmd)" if (max(@pagecount[1..2
 # print results
 if (!grep {$_ eq '1'} @difference_flags) {
  printf("Of %d pages, PDF images are identical.\n", $pagecount[1]);  # page counts are identical, can use either one
+ exit 0;  # indicate same
 } else {
  # turn an array of difference flags (0 1 0 1 1 1 0)
  # into an array of array hashes of modified pages ( [2] [4 5 6] )
@@ -62,6 +63,7 @@ if (!grep {$_ eq '1'} @difference_flags) {
  printf("Of %s pages, PDF images differ at: %s.\n",
    ($pagecount[1] == $pagecount[2]) ? ($pagecount[1]) : sprintf('(%d and %d)', ($pagecount[1], $pagecount[2])),
    join(', ', @section_text));
+ exit 1;  # indicate difference
 }
 
 
@@ -78,7 +80,7 @@ compare_pdf_images.pl - compare two PDF files visually (by bitmap-rendered image
 
 =head1 VERSION
 
-0.20
+0.21
 
 =cut
 
