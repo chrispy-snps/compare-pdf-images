@@ -5,6 +5,8 @@ This is a perl script that visually compares two PDF files for differences by
 * Using Ghostscript to render each PDF to a multipage TIFF
 * Using ImageMagick to analyze the two multipage TIFFs for differences
 
+This utility _does not compare text content_. It renders the PDFs to bitmap images, then reports if the pixels differ between them. With this approach, formatting changes (including changes in padding, margin, etc.) are detected.
+
 ## Getting Started
 
 You can run these utilities on a native linux machine, or on a Windows 10 machine that has Windows Subsystem for Linux (WSL) installed. Other architectures can work, but this is what I have access to.
@@ -35,7 +37,7 @@ PATH=~/compare-pdf-images/bin:$PATH
 
 ## Usage
 
-`compare-pdf-images.pl` takes two PDF files as input, then reports visual differences (if any). The usage is,
+`compare-pdf-images.pl` takes two PDF files as input, then reports visual differences (if any). The syntax is,
 
 ```
 $ compare_pdf_images.pl -help
@@ -46,6 +48,10 @@ Usage:
             Show additional information about reading and processing files
 ```
 
+The basic usage is,
+
+`$ compare_pdf_images.pl file1.pdf file2.pdf`
+
 If the files are identical, the script reports:
 
 `Of 47 pages, PDF images are identical.`
@@ -54,11 +60,11 @@ If the files differ, the script reports:
 
 `Of 47 pages, PDF images differ at: 4-5, 17, 29-47.`
 
-The script returns `0` for identicality and `1` for difference.
-
 If the files have different page counts, both page counts are reported, and the additional pages are always reported as different:
 
 `Of (47 and 51) pages, PDF images differ at: 4-5, 17, 29-51.`
+
+The script returns `0` for identicality and `1` for difference. This allows scripts to check its return code.
 
 By default, only a single-line result message is printed. To show analysis progress, along with the command lines used for analysis, use the `-verbose` option:
 
