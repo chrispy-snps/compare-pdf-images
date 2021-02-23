@@ -82,6 +82,12 @@ Comparing temporary TIFF files via the following command:
 Of 2 pages, PDF images differ at: 1-2.
 ```
 
+## Examples
+
+### compare_ditaot_versions.sh
+
+The [`compare_ditaot_versions.sh`](examples/compare_ditaot_versions.sh) script compares the PDF output from two different versions of the [DITA Open Toolkit](https://www.dita-ot.org/) for a set of .ditamap files. For each book, the PDFs are kept only if they don't match. This reduces the disk space required to run a full output regression test of many map files.
+
 ## Implementation Notes
 
 I tried the PDF-to-TIFF conversion support built into ImageMagick (which calls Ghostscript internally I think?), but I was able to achieve better output by calling Ghostscript directly. The TIFF output is LZW-compressed.
