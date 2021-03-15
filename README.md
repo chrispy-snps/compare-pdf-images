@@ -22,8 +22,17 @@ The script looks for `gs` in the environment search path.
 #### ImageMagick
 
 You must have an ImageMagick 7 installation on your machine that supports TIFF input.
-(It is possible to build ImageMagick without TIFF support - ask me how I know!)
 The script looks for `magick` in the environment search path.
+
+If you do not have ImageMagick 7 installed, and your Ubuntu repository still offers
+6.x at the latest, I strongly suggest using ImageMagick Easy Install (IMEI):
+
+https://github.com/SoftCreatR/imei
+
+ImageMagick is easy to install from the source tarball, but many image formats
+("delegates") are missing in a default Ubuntu installation, including TIFF. IMEI
+automates all the tricky business of identifying and downloading the additional
+development packages needed for a full-featured installation of ImageMagick 7.
 
 ### Installing
 
